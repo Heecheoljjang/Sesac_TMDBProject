@@ -87,7 +87,14 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.posterImageView.kf.setImage(with: url)
         cell.titleLabel.text = movieList[indexPath.item].title
         cell.realRate.text = "\(round(movieList[indexPath.item].rate * 10) / 10 )"
-        cell.releaseLabel.text = movieList[indexPath.item].releaseDate
+        
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd"
+        let temp = format.date(from: movieList[indexPath.item].releaseDate)
+        format.dateFormat = "MM/dd/yyyy"
+        let newDate = format.string(from: temp!)
+        
+        cell.releaseLabel.text = newDate
         cell.actorLabel.text = movieList[indexPath.item].overview
         
         return cell
