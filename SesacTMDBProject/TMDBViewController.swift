@@ -15,16 +15,18 @@ class TMDBViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var movieList: [TMDBModel] = []
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
      
-        fetchMovieData()
+        fetchMovieData(page: page)
         
         collectionView.register(UINib(nibName: TMDBCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TMDBCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
         
         
         
@@ -43,9 +45,9 @@ class TMDBViewController: UIViewController {
     }
 
     
-    func fetchMovieData() {
+    func fetchMovieData(page: Int) {
         
-        let url = EndPoint.tmdbURL + APIKey.TMDB_KEY
+        let url = EndPoint.tmdbURL + APIKey.TMDB_KEY + "&page=\(page)"
         
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -70,8 +72,41 @@ class TMDBViewController: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    func fetchGenre() {
+        
+        let url = ""
+        
+        AF.request(url, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+}
+
+extension TMDBViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+            if movieList.count - 1 == indexPath.item {
+                page += 1
+                fetchMovieData(page: page)
+            }
+        }
         
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+//        <#code#>
+//    }
 }
 
 extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSource {
