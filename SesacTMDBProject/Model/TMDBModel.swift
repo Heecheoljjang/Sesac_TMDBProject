@@ -15,4 +15,5 @@ struct TMDBModel {
     let overview: String
     let movieId: Int
     let posterURL: String
+    let genre: Int
 }

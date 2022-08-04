@@ -16,12 +16,14 @@ class TMDBViewController: UIViewController {
     
     var movieList: [TMDBModel] = []
     var page = 1
+    var genreDic: [Int: String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
      
         fetchMovieData(page: page)
+        fetchGenre()
         
         collectionView.register(UINib(nibName: TMDBCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TMDBCollectionViewCell.identifier)
         collectionView.delegate = self
@@ -64,8 +66,9 @@ class TMDBViewController: UIViewController {
                     let overview = movie["overview"].stringValue
                     let movieId = movie["id"].intValue
                     let posterURL = movie["poster_path"].stringValue
+                    let genreId = movie["genre_ids"][0].intValue
                     
-                    let data = TMDBModel(title: originalTitle, releaseDate: releaseDate, rate: rate, imageURL: imageURL, overview: overview, movieId: movieId, posterURL: posterURL)
+                    let data = TMDBModel(title: originalTitle, releaseDate: releaseDate, rate: rate, imageURL: imageURL, overview: overview, movieId: movieId, posterURL: posterURL, genre: genreId)
                     
                     self.movieList.append(data)
                 }
@@ -79,7 +82,7 @@ class TMDBViewController: UIViewController {
     
     func fetchGenre() {
         
-        let url = ""
+        let url = EndPoint.genreURL + APIKey.TMDB_KEY
         
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -87,6 +90,11 @@ class TMDBViewController: UIViewController {
                 let json = JSON(value)
                 print(json)
                 
+                for genre in json["genres"].arrayValue {
+                    self.genreDic[genre["id"].intValue] = genre["name"].stringValue
+                }
+                print(self.genreDic)
+                self.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -125,6 +133,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.posterImageView.kf.setImage(with: url)
         cell.titleLabel.text = movieList[indexPath.item].title
         cell.realRate.text = "\(round(movieList[indexPath.item].rate * 10) / 10 )"
+        cell.genreLabel.text = "#\(genreDic[movieList[indexPath.item].genre] ?? "Sesac")"
         
         let format = DateFormatter()
         format.dateFormat = "yyyy-MM-dd"
@@ -142,7 +151,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.identifier) as? MovieDetailViewController else { return }
-        vc.movieData = TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL)
+        vc.movieData = TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL, genre: movieList[indexPath.item].genre)
         
         navigationController?.pushViewController(vc, animated: true)
     }
