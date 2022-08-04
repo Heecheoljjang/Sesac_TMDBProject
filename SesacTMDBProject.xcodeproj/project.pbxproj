@@ -204,8 +204,8 @@
 		97ECF18D289BEEEA00A550F5 /* Cast */ = {
 			isa = PBXGroup;
 			children = (
-				97ECF18E289BEF1900A550F5 /* CastTableViewCell.swift */,
 				97ECF194289BFF8200A550F5 /* CastTableViewCell.xib */,
+				97ECF18E289BEF1900A550F5 /* CastTableViewCell.swift */,
 			);
 			path = Cast;
 			sourceTree = "<group>";

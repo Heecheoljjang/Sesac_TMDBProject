@@ -12,5 +12,7 @@ class OverviewTableViewCell: UITableViewCell {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     
-
+    override func awakeFromNib() {
+        moreButton.tintColor = .black
+    }
 }

@@ -23,6 +23,9 @@ class MovieDetailViewController: UIViewController {
     var castList: [CastModel] = []
     var crewList: [CrewModel] = []
     
+    var height: CGFloat = 100
+    var isCollapsed = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,10 +90,6 @@ class MovieDetailViewController: UIViewController {
                     
                     self.crewList.append(CrewModel(name: name, department: department))
                 }
-                
-                print(self.castList)
-                print(self.crewList)
-                
                 self.tableview.reloadData()
             case .failure(let error):
                 print(error)
@@ -121,6 +120,11 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             guard let cell = tableview.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier) as? OverviewTableViewCell else { return UITableViewCell() }
             
             cell.overviewLabel.text = movieData?.overview
+            cell.overviewLabel.numberOfLines = isCollapsed ? 2 : 0
+            cell.moreButton.setImage(UIImage(systemName: isCollapsed ? "chevron.down" : "chevron.up"), for: .normal)
+            
+            //더 보기 버튼
+//            cell.moreButton.addTarget(self, action: #selector(tapMoreButton), for: .touchUpInside)
             
             return cell
         } else if indexPath.section == 1 {
@@ -143,9 +147,18 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        isCollapsed = !isCollapsed
+        
+        height = isCollapsed ? 120 : UITableView.automaticDimension
+        
+        tableview.reloadRows(at: [indexPath], with: .automatic)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 100
+            return height
         } else {
             return 80
         }
@@ -160,4 +173,5 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return "Crew"
         }
     }
+
 }
