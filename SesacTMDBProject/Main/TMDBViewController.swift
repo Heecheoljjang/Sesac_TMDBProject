@@ -88,12 +88,10 @@ class TMDBViewController: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
                 
                 for genre in json["genres"].arrayValue {
                     self.genreDic[genre["id"].intValue] = genre["name"].stringValue
                 }
-                print(self.genreDic)
                 self.collectionView.reloadData()
             case .failure(let error):
                 print(error)
@@ -114,10 +112,6 @@ extension TMDBViewController: UICollectionViewDataSourcePrefetching {
         }
         
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-//        <#code#>
-//    }
 }
 
 extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSource {
