@@ -13,4 +13,6 @@ struct TMDBModel {
     let rate: Double
     let imageURL: String
     let overview: String
+    let movieId: Int
+    let posterURL: String
 }

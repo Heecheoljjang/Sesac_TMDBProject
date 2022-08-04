@@ -42,6 +42,7 @@ class TMDBViewController: UIViewController {
         layout.minimumLineSpacing = spacing
         collectionView.collectionViewLayout = layout
         
+        navigationItem.backButtonTitle = ""
     }
 
     
@@ -61,8 +62,10 @@ class TMDBViewController: UIViewController {
                     let rate = movie["vote_average"].doubleValue
                     let imageURL = movie["backdrop_path"].stringValue
                     let overview = movie["overview"].stringValue
+                    let movieId = movie["id"].intValue
+                    let posterURL = movie["poster_path"].stringValue
                     
-                    let data = TMDBModel(title: originalTitle, releaseDate: releaseDate, rate: rate, imageURL: imageURL, overview: overview)
+                    let data = TMDBModel(title: originalTitle, releaseDate: releaseDate, rate: rate, imageURL: imageURL, overview: overview, movieId: movieId, posterURL: posterURL)
                     
                     self.movieList.append(data)
                 }
@@ -118,7 +121,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TMDBCollectionViewCell.identifier, for: indexPath) as? TMDBCollectionViewCell else { return UICollectionViewCell() }
         
-        let url = URL(string: "http://image.tmdb.org/t/p/w500" + movieList[indexPath.item].imageURL)
+        let url = URL(string: EndPoint.imageURL + movieList[indexPath.item].imageURL)
         cell.posterImageView.kf.setImage(with: url)
         cell.titleLabel.text = movieList[indexPath.item].title
         cell.realRate.text = "\(round(movieList[indexPath.item].rate * 10) / 10 )"
@@ -135,6 +138,12 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    
-
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.identifier) as? MovieDetailViewController else { return }
+        vc.movieData = TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL)
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

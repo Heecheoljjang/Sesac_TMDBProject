@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OverviewTableViewCell" rowHeight="104" id="ncl-Ma-lf1" customClass="OverviewTableViewCell" customModule="SesacTMDBProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="104"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ncl-Ma-lf1" id="9mW-Y2-f8K">
+                <rect key="frame" x="0.0" y="0.0" width="362" height="104"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZM-nN-nxK">
+                        <rect key="frame" x="20" y="16" width="41.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycV-n5-SRi">
+                        <rect key="frame" x="159" y="65" width="44" height="31"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ycV-n5-SRi" secondAttribute="bottom" constant="8" id="4Ko-hR-7XX"/>
+                    <constraint firstItem="IZM-nN-nxK" firstAttribute="top" secondItem="9mW-Y2-f8K" secondAttribute="top" constant="16" id="OGL-Gn-6eX"/>
+                    <constraint firstItem="ycV-n5-SRi" firstAttribute="centerX" secondItem="9mW-Y2-f8K" secondAttribute="centerX" id="SLK-aq-Zap"/>
+                    <constraint firstItem="ycV-n5-SRi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IZM-nN-nxK" secondAttribute="bottom" constant="16" id="Tof-9N-t3y"/>
+                    <constraint firstItem="IZM-nN-nxK" firstAttribute="leading" secondItem="9mW-Y2-f8K" secondAttribute="leading" constant="20" id="aJD-Hz-4Y7"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IZM-nN-nxK" secondAttribute="trailing" constant="28" id="f5W-mG-pvN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="18.840579710144929" y="197.54464285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+    </resources>
+</document>
