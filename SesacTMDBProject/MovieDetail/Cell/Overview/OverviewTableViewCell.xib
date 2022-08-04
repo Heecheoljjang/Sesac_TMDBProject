@@ -36,6 +36,10 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IZM-nN-nxK" secondAttribute="trailing" constant="28" id="f5W-mG-pvN"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="moreButton" destination="ycV-n5-SRi" id="CPa-qE-QPc"/>
+                <outlet property="overviewLabel" destination="IZM-nN-nxK" id="fGc-e1-mIE"/>
+            </connections>
             <point key="canvasLocation" x="18.840579710144929" y="197.54464285714286"/>
         </tableViewCell>
     </objects>

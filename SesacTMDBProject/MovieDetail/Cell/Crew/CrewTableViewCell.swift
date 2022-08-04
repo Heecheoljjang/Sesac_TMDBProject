@@ -9,15 +9,12 @@ import UIKit
 
 class CrewTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var departmentLabel: UILabel!
+    
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        departmentLabel.textColor = .lightGray
+        departmentLabel.font = .systemFont(ofSize: 14, weight: .regular)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }

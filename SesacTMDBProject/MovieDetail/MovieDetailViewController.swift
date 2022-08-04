@@ -31,6 +31,7 @@ class MovieDetailViewController: UIViewController {
         
         tableview.delegate = self
         tableview.dataSource = self
+        tableview.sectionHeaderTopPadding = 32
         
         tableview.register(UINib(nibName: CastTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CastTableViewCell.identifier)
         tableview.register(UINib(nibName: OverviewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.identifier)
@@ -72,8 +73,25 @@ class MovieDetailViewController: UIViewController {
                 let json = JSON(value)
                 print(json)
                 
+                for cast in json["cast"].arrayValue {
+                    let profileImageURL = cast["profile_path"].stringValue
+                    let name = cast["name"].stringValue
+                    let department = cast["known_for_department"].stringValue
+                    
+                    self.castList.append(CastModel(name: name, profileURL: profileImageURL, department: department))
+                }
                 
+                for crew in json["crew"].arrayValue {
+                    let name = crew["name"].stringValue
+                    let department = crew["known_for_department"].stringValue
+                    
+                    self.crewList.append(CrewModel(name: name, department: department))
+                }
                 
+                print(self.castList)
+                print(self.crewList)
+                
+                self.tableview.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -88,24 +106,58 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return castList.count
+        } else {
+            return crewList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 {
             guard let cell = tableview.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier) as? OverviewTableViewCell else { return UITableViewCell() }
+            
+            cell.overviewLabel.text = movieData?.overview
             
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableview.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier) as? CastTableViewCell else { return UITableViewCell() }
             
+            cell.nameLabel.text = castList[indexPath.item].name
+            cell.departmentLabel.text = castList[indexPath.item].department
+            
+            let url = URL(string: EndPoint.imageURL + castList[indexPath.item].profileURL)
+            cell.profileImageView.kf.setImage(with: url)
+            
             return cell
         } else {
             guard let cell = tableview.dequeueReusableCell(withIdentifier: CrewTableViewCell.identifier) as? CrewTableViewCell else { return UITableViewCell() }
+            
+            cell.nameLabel.text = crewList[indexPath.item].name
+            cell.departmentLabel.text = crewList[indexPath.item].department
             
             return cell
         }
         
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 100
+        } else {
+            return 80
+        }
+    }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Overview"
+        } else if section == 1 {
+            return "Cast"
+        } else {
+            return "Crew"
+        }
+    }
 }

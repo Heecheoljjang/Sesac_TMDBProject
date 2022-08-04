@@ -22,19 +22,23 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbB-nc-wgq">
-                        <rect key="frame" x="20" y="57" width="42" height="21"/>
+                        <rect key="frame" x="20" y="45" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="NbB-nc-wgq" firstAttribute="top" secondItem="iRH-Sd-iBb" secondAttribute="bottom" constant="20" id="ETg-IT-EGG"/>
+                    <constraint firstItem="NbB-nc-wgq" firstAttribute="top" secondItem="iRH-Sd-iBb" secondAttribute="bottom" constant="8" id="ETg-IT-EGG"/>
                     <constraint firstItem="iRH-Sd-iBb" firstAttribute="leading" secondItem="i7E-i5-E32" secondAttribute="leading" constant="20" id="GMp-YX-BvS"/>
                     <constraint firstItem="iRH-Sd-iBb" firstAttribute="top" secondItem="i7E-i5-E32" secondAttribute="top" constant="16" id="PaV-E2-KRL"/>
                     <constraint firstItem="NbB-nc-wgq" firstAttribute="leading" secondItem="iRH-Sd-iBb" secondAttribute="leading" id="WQz-PG-frB"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="departmentLabel" destination="NbB-nc-wgq" id="i0Z-el-yQh"/>
+                <outlet property="nameLabel" destination="iRH-Sd-iBb" id="Fd7-DN-3Lp"/>
+            </connections>
             <point key="canvasLocation" x="27" y="323"/>
         </tableViewCell>
     </objects>
