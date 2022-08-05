@@ -106,6 +106,17 @@
                                     <constraint firstAttribute="trailing" secondItem="KmC-Rl-oyf" secondAttribute="trailing" constant="4" id="Q0y-nq-Rcs"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-Ew-Lnx">
+                                <rect key="frame" x="336" y="12" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="HeN-ct-hSl"/>
+                                    <constraint firstAttribute="width" constant="24" id="S1p-dN-6CH"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="link.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -126,7 +137,9 @@
                             <constraint firstItem="vl7-Fa-nFD" firstAttribute="leading" secondItem="Gom-5L-sbK" secondAttribute="leading" constant="16" id="eyi-QM-qBx"/>
                             <constraint firstItem="Xar-6n-lsg" firstAttribute="centerY" secondItem="p6l-oe-69U" secondAttribute="centerY" id="gJ5-m5-ZHk"/>
                             <constraint firstItem="Fed-jg-OuD" firstAttribute="leading" secondItem="S1b-2G-Acl" secondAttribute="leading" id="gLi-bw-arD"/>
+                            <constraint firstAttribute="trailing" secondItem="qcw-Ew-Lnx" secondAttribute="trailing" constant="12" id="gqn-RC-jef"/>
                             <constraint firstAttribute="trailing" secondItem="vl7-Fa-nFD" secondAttribute="trailing" constant="16" id="gxq-M2-HIh"/>
+                            <constraint firstItem="qcw-Ew-Lnx" firstAttribute="top" secondItem="Gom-5L-sbK" secondAttribute="top" constant="12" id="hxc-Iy-oOJ"/>
                             <constraint firstItem="Fed-jg-OuD" firstAttribute="top" secondItem="S1b-2G-Acl" secondAttribute="bottom" constant="4" id="mNf-rm-0Gf"/>
                             <constraint firstItem="Isy-kq-Dpp" firstAttribute="leading" secondItem="Gom-5L-sbK" secondAttribute="leading" id="pEy-HK-ySu"/>
                             <constraint firstItem="Isy-kq-Dpp" firstAttribute="top" secondItem="Gom-5L-sbK" secondAttribute="top" id="pbn-kb-GKp"/>
@@ -151,6 +164,7 @@
                 <outlet property="detailLabel" destination="p6l-oe-69U" id="kXA-pS-WPW"/>
                 <outlet property="genreLabel" destination="cbq-w1-pCO" id="Qic-1P-Lfj"/>
                 <outlet property="lineView" destination="vl7-Fa-nFD" id="xbC-bX-Pvn"/>
+                <outlet property="linkButton" destination="qcw-Ew-Lnx" id="e1r-9a-RZI"/>
                 <outlet property="nextButton" destination="Xar-6n-lsg" id="aT0-CX-Kjn"/>
                 <outlet property="outerView" destination="Gom-5L-sbK" id="5Is-Q6-tcP"/>
                 <outlet property="posterImageView" destination="Isy-kq-Dpp" id="VaX-ZW-6ad"/>
@@ -166,6 +180,7 @@
     </objects>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="link.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

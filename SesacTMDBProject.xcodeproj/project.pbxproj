@@ -14,6 +14,8 @@
 		9795D387289A8555003F2BA0 /* TMDBCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795D385289A8555003F2BA0 /* TMDBCollectionViewCell.swift */; };
 		9795D388289A8555003F2BA0 /* TMDBCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9795D386289A8555003F2BA0 /* TMDBCollectionViewCell.xib */; };
 		9795D38B289A8C84003F2BA0 /* TMDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795D38A289A8C84003F2BA0 /* TMDBModel.swift */; };
+		979AA3D1289D2814009378EC /* VideoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 979AA3D0289D2814009378EC /* VideoView.storyboard */; };
+		979AA3D3289D2E8D009378EC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AA3D2289D2E8D009378EC /* VideoViewController.swift */; };
 		97E5A46B2899FA8F00FFCB3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */; };
 		97E5A46D2899FA8F00FFCB3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */; };
 		97E5A46F2899FA8F00FFCB3D /* TMDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46E2899FA8F00FFCB3D /* TMDBViewController.swift */; };
@@ -43,6 +45,8 @@
 		9795D385289A8555003F2BA0 /* TMDBCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBCollectionViewCell.swift; sourceTree = "<group>"; };
 		9795D386289A8555003F2BA0 /* TMDBCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TMDBCollectionViewCell.xib; sourceTree = "<group>"; };
 		9795D38A289A8C84003F2BA0 /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
+		979AA3D0289D2814009378EC /* VideoView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoView.storyboard; sourceTree = "<group>"; };
+		979AA3D2289D2E8D009378EC /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		97E5A4672899FA8F00FFCB3D /* SesacTMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SesacTMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		979AA3CF289D27F8009378EC /* VideoView */ = {
+			isa = PBXGroup;
+			children = (
+				979AA3D0289D2814009378EC /* VideoView.storyboard */,
+				979AA3D2289D2E8D009378EC /* VideoViewController.swift */,
+			);
+			path = VideoView;
+			sourceTree = "<group>";
+		};
 		97E5A45E2899FA8F00FFCB3D = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +140,7 @@
 				97E5A4732899FA9000FFCB3D /* Assets.xcassets */,
 				97E5A4752899FA9000FFCB3D /* LaunchScreen.storyboard */,
 				97E5A4782899FA9000FFCB3D /* Info.plist */,
+				979AA3CF289D27F8009378EC /* VideoView */,
 				97ECF176289BCB0600A550F5 /* MovieDetail */,
 				97ECF175289BCABE00A550F5 /* Main */,
 				97E5A4802899FAD600FFCB3D /* Key */,
@@ -290,6 +304,7 @@
 				97ECF197289BFF9D00A550F5 /* OverviewTableViewCell.xib in Resources */,
 				97E5A4742899FA9000FFCB3D /* Assets.xcassets in Resources */,
 				97E5A4722899FA8F00FFCB3D /* Main.storyboard in Resources */,
+				979AA3D1289D2814009378EC /* VideoView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +317,7 @@
 			files = (
 				97ECF183289BDAAF00A550F5 /* UIViewController+Extension.swift in Sources */,
 				97ECF18F289BEF1900A550F5 /* CastTableViewCell.swift in Sources */,
+				979AA3D3289D2E8D009378EC /* VideoViewController.swift in Sources */,
 				97ECF191289BEF6900A550F5 /* CrewTableViewCell.swift in Sources */,
 				9795D38B289A8C84003F2BA0 /* TMDBModel.swift in Sources */,
 				97E5A46F2899FA8F00FFCB3D /* TMDBViewController.swift in Sources */,

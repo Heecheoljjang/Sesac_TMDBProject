@@ -24,6 +24,7 @@ class TMDBCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var realRate: UILabel!
     @IBOutlet weak var rateLabelView: UIView!
     @IBOutlet weak var realRateLabelView: UIView!
+    @IBOutlet weak var linkButton: UIButton!
     
     override func awakeFromNib() {
         setUpCell()
@@ -50,6 +51,6 @@ class TMDBCollectionViewCell: UICollectionViewCell {
         rateLabel.text = "평점"
         rateLabelView.backgroundColor = .systemIndigo
         realRate.adjustsFontSizeToFitWidth = true
-
+        linkButton.tintColor = .white
     }
 }

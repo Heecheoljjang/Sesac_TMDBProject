@@ -17,6 +17,7 @@ class TMDBViewController: UIViewController {
     var movieList: [TMDBModel] = []
     var page = 1
     var genreDic: [Int: String] = [:]
+    var trailerKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,9 @@ class TMDBViewController: UIViewController {
                     
                     self.movieList.append(data)
                 }
+                
+                
+                
                 self.collectionView.reloadData()
                 print(self.movieList.count)
             case .failure(let error):
@@ -98,6 +102,26 @@ class TMDBViewController: UIViewController {
             }
         }
     }
+    
+    func fetchTrailerLink(movieId: Int) {
+        print(movieId)
+        
+        let url = EndPoint.trailerURL + "\(movieId)" + EndPoint.trailerVideoURL + APIKey.TMDB_KEY
+        
+        AF.request(url, method: .get).validate(statusCode: 200..<400).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
 }
 
 extension TMDBViewController: UICollectionViewDataSourcePrefetching {
@@ -137,6 +161,11 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.releaseLabel.text = newDate
         cell.actorLabel.text = movieList[indexPath.item].overview
+            
+        // tag설정
+        cell.linkButton.tag = indexPath.item
+        
+        cell.linkButton.addTarget(self, action: #selector(showVideo(sender: )), for: .touchUpInside)
         
         return cell
     }
