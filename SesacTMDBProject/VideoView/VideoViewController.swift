@@ -15,41 +15,32 @@ class VideoViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     
-    var movieId: Int = 0
+    var trailerKey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(trailerKey)
         setUpNavigationBar()
-        
-        fetchTrailerLink(movieId: movieId)
+        print(#function)
+        openTrailerURL(key: trailerKey)
         
     }
     
-    func openTrailerURL(url: String) {
+    func openTrailerURL(key: String) {
         
+        guard let url = URL(string: "https://www.youtube.com/watch?v=\(key)") else { return }
+        
+        print(url)
+        
+        let request = URLRequest(url: url)
+        
+        webView.load(request)
+        print(#function)
     }
     
     func setUpNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissWebView))
         navigationItem.leftBarButtonItem?.tintColor = .black
-    }
-    
-    func fetchTrailerLink(movieId: Int) {
-        
-        let url = EndPoint.trailerURL + "\(movieId)" + EndPoint.trailerVideoURL + APIKey.TMDB_KEY
-        
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-                
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
     }
 }

@@ -16,6 +16,7 @@
 		9795D38B289A8C84003F2BA0 /* TMDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795D38A289A8C84003F2BA0 /* TMDBModel.swift */; };
 		979AA3D1289D2814009378EC /* VideoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 979AA3D0289D2814009378EC /* VideoView.storyboard */; };
 		979AA3D3289D2E8D009378EC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AA3D2289D2E8D009378EC /* VideoViewController.swift */; };
+		979AA3D6289D6EA0009378EC /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 979AA3D5289D6EA0009378EC /* JGProgressHUD */; };
 		97E5A46B2899FA8F00FFCB3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */; };
 		97E5A46D2899FA8F00FFCB3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */; };
 		97E5A46F2899FA8F00FFCB3D /* TMDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46E2899FA8F00FFCB3D /* TMDBViewController.swift */; };
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				979AA3D6289D6EA0009378EC /* JGProgressHUD in Frameworks */,
 				9795D380289A8082003F2BA0 /* Kingfisher in Frameworks */,
 				9795D37D289A8078003F2BA0 /* SwiftyJSON in Frameworks */,
 				9795D37A289A806C003F2BA0 /* Alamofire in Frameworks */,
@@ -247,6 +249,7 @@
 				9795D379289A806C003F2BA0 /* Alamofire */,
 				9795D37C289A8078003F2BA0 /* SwiftyJSON */,
 				9795D37F289A8082003F2BA0 /* Kingfisher */,
+				979AA3D5289D6EA0009378EC /* JGProgressHUD */,
 			);
 			productName = SesacTMDBProject;
 			productReference = 97E5A4672899FA8F00FFCB3D /* SesacTMDBProject.app */;
@@ -280,6 +283,7 @@
 				9795D378289A806C003F2BA0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				9795D37B289A8078003F2BA0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				9795D37E289A8082003F2BA0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				979AA3D4289D6E9F009378EC /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 97E5A4682899FA8F00FFCB3D /* Products */;
 			projectDirPath = "";
@@ -576,6 +580,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		979AA3D4289D6E9F009378EC /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -593,6 +605,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9795D37E289A8082003F2BA0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		979AA3D5289D6EA0009378EC /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 979AA3D4289D6E9F009378EC /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

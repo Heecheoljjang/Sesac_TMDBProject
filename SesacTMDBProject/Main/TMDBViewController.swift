@@ -6,9 +6,11 @@
 //
 
 import UIKit
+
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import JGProgressHUD
 
 class TMDBViewController: UIViewController {
 
@@ -103,8 +105,7 @@ class TMDBViewController: UIViewController {
         }
     }
     
-    func fetchTrailerLink(movieId: Int) {
-        print(movieId)
+    func fetchTrailerLink(movieId: Int, completionHandler: @escaping (String) -> ()) {
         
         let url = EndPoint.trailerURL + "\(movieId)" + EndPoint.trailerVideoURL + APIKey.TMDB_KEY
         
@@ -113,8 +114,10 @@ class TMDBViewController: UIViewController {
             case .success(let value):
                 let json = JSON(value)
                 print(json)
-                
-                
+//                self.trailerKey = json["results"][0]["key"].stringValue
+//                print(self.trailerKey)
+                completionHandler(json["results"][0]["key"].stringValue)
+
             case .failure(let error):
                 print(error)
             }
