@@ -13,7 +13,7 @@ import Kingfisher
 import JGProgressHUD
 
 class TMDBViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var movieList: [TMDBModel] = []
@@ -56,26 +56,22 @@ class TMDBViewController: UIViewController {
     }
     
     func fetchMovieData(page: Int) {
-        DispatchQueue.global().async {
+        print(Thread.isMainThread)
+        FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
             print(Thread.isMainThread)
-            FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
-                print(Thread.isMainThread)
-                self.movieList.append(contentsOf: list)
-                self.collectionView.reloadData()
-            }
-            print("789",Thread.isMainThread)
+            self.movieList.append(contentsOf: list)
+            self.collectionView.reloadData()
         }
     }
-    
     func fetchGenre() {
-            FetchGenreAPIManager.shared.fetchGenre { genreDic in
-                self.genreDic = genreDic
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+        FetchGenreAPIManager.shared.fetchGenre { genreDic in
+            self.genreDic = genreDic
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
+        }
     }
-    
+
     func fetchTrailerLink(movieId: Int) {
         FetchTrailerLinkAPIManager.shared.fetchTrailerLink(movieId: movieId) { trailerKey in
             self.trailerKey = trailerKey
@@ -89,7 +85,6 @@ class TMDBViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension TMDBViewController: UICollectionViewDataSourcePrefetching {
@@ -129,7 +124,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.releaseLabel.text = newDate
         cell.actorLabel.text = movieList[indexPath.item].overview
-            
+        
         // tag설정
         cell.linkButton.tag = indexPath.item
         
