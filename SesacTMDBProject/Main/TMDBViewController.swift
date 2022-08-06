@@ -24,16 +24,23 @@ class TMDBViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
+        
+        // 네트워킹
         fetchMovieData(page: page)
+        
         fetchGenre()
         
+        //컬렉션뷰
+        setUpCollectionView()
+        
+        navigationItem.backButtonTitle = ""
+    }
+    
+    func setUpCollectionView() {
         collectionView.register(UINib(nibName: TMDBCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TMDBCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
-        
-        
         
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 8
@@ -46,34 +53,37 @@ class TMDBViewController: UIViewController {
         layout.minimumInteritemSpacing = spacing
         layout.minimumLineSpacing = spacing
         collectionView.collectionViewLayout = layout
-        
-        navigationItem.backButtonTitle = ""
     }
     
     func fetchMovieData(page: Int) {
         FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
-            self.movieList = list
-            self.collectionView.reloadData()
+            self.movieList.append(contentsOf: list)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
     func fetchGenre() {
-        
-        FetchGenreAPIManager.shared.fetchGenre { genreDic in
-            self.genreDic = genreDic
-            self.collectionView.reloadData()
-        }
+            FetchGenreAPIManager.shared.fetchGenre { genreDic in
+                self.genreDic = genreDic
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
     }
     
     func fetchTrailerLink(movieId: Int) {
         FetchTrailerLinkAPIManager.shared.fetchTrailerLink(movieId: movieId) { trailerKey in
             self.trailerKey = trailerKey
-            let sb = UIStoryboard(name: "VideoView", bundle: nil)
-            guard let vc = sb.instantiateViewController(withIdentifier: VideoViewController.identifier) as? VideoViewController else { return }
-            vc.trailerKey = self.trailerKey
-            let naviationController = UINavigationController(rootViewController: vc)
-            naviationController.modalPresentationStyle = .fullScreen
-            self.present(naviationController, animated: true)
+            DispatchQueue.main.async {
+                let sb = UIStoryboard(name: "VideoView", bundle: nil)
+                guard let vc = sb.instantiateViewController(withIdentifier: VideoViewController.identifier) as? VideoViewController else { return }
+                vc.trailerKey = self.trailerKey
+                let naviationController = UINavigationController(rootViewController: vc)
+                naviationController.modalPresentationStyle = .fullScreen
+                self.present(naviationController, animated: true)
+            }
         }
     }
     

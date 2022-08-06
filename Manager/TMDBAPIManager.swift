@@ -22,7 +22,7 @@ class FetchMovieDataAPIManager {
         
         let url = EndPoint.tmdbURL + APIKey.TMDB_KEY + "&page=\(page)"
         
-        AF.request(url, method: .get).validate().responseJSON { response in
+        AF.request(url, method: .get).validate().responseJSON(queue: .global()) { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -62,7 +62,7 @@ class FetchGenreAPIManager {
         
         let url = EndPoint.genreURL + APIKey.TMDB_KEY
         
-        AF.request(url, method: .get).validate().responseJSON { response in
+        AF.request(url, method: .get).validate().responseJSON(queue: .global()) { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -94,7 +94,7 @@ class FetchTrailerLinkAPIManager {
         
         let url = EndPoint.trailerURL + "\(movieId)" + EndPoint.trailerVideoURL + APIKey.TMDB_KEY
         
-        AF.request(url, method: .get).validate(statusCode: 200..<400).responseJSON { response in
+        AF.request(url, method: .get).validate(statusCode: 200..<400).responseJSON(queue: .global()) { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
