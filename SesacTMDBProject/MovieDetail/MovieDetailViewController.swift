@@ -32,16 +32,9 @@ class MovieDetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         title = "출연 / 제작"
         
-        tableview.delegate = self
-        tableview.dataSource = self
-        tableview.sectionHeaderTopPadding = 32
-        
-        tableview.register(UINib(nibName: CastTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CastTableViewCell.identifier)
-        tableview.register(UINib(nibName: OverviewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.identifier)
-        tableview.register(UINib(nibName: CrewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CrewTableViewCell.identifier)
+        setUpTableView()
         
         if let data = movieData {
-            print("data:\(data)")
             setUpHeaderView(data: data)
         }
         
@@ -49,6 +42,16 @@ class MovieDetailViewController: UIViewController {
         
     }
 
+    func setUpTableView() {
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.sectionHeaderTopPadding = 32
+        
+        tableview.register(UINib(nibName: CastTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CastTableViewCell.identifier)
+        tableview.register(UINib(nibName: OverviewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.identifier)
+        tableview.register(UINib(nibName: CrewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CrewTableViewCell.identifier)
+    }
+    
     func setUpHeaderView(data: TMDBModel) {
         let backImageURL = URL(string: data.imageURL)
         let posterImageURL = URL(string: data.posterURL)
@@ -65,32 +68,13 @@ class MovieDetailViewController: UIViewController {
         guard let movieData = movieData else {
             return
         }
-        
-        let url = EndPoint.castURL + "\(movieData.movieId)" + EndPoint.castCreditURL + APIKey.TMDB_KEY
-        
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-                
-                for cast in json["cast"].arrayValue {
-                    let profileImageURL = cast["profile_path"].stringValue
-                    let name = cast["name"].stringValue
-                    let department = cast["known_for_department"].stringValue
-                    
-                    self.castList.append(CastModel(name: name, profileURL: profileImageURL, department: department))
-                }
-                
-                for crew in json["crew"].arrayValue {
-                    let name = crew["name"].stringValue
-                    let department = crew["known_for_department"].stringValue
-                    
-                    self.crewList.append(CrewModel(name: name, department: department))
-                }
+
+        FetchCastAPIManager.shared.fetchCast(movieData: movieData) { castList, crewList in
+            self.castList = castList
+            self.crewList = crewList
+            
+            DispatchQueue.main.async {
                 self.tableview.reloadData()
-            case .failure(let error):
-                print(error)
             }
         }
     }

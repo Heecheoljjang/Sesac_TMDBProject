@@ -20,9 +20,8 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(trailerKey)
         setUpNavigationBar()
-        print(#function)
+
         openTrailerURL(key: trailerKey)
         
     }
@@ -30,13 +29,10 @@ class VideoViewController: UIViewController {
     func openTrailerURL(key: String) {
         
         guard let url = URL(string: "https://www.youtube.com/watch?v=\(key)") else { return }
-        
-        print(url)
-        
+                
         let request = URLRequest(url: url)
         
         webView.load(request)
-        print(#function)
     }
     
     func setUpNavigationBar() {

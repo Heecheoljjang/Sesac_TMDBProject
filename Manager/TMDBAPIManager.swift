@@ -21,8 +21,10 @@ class FetchMovieDataAPIManager {
     func fetchMovieData(page: Int, completionHandler: @escaping ([TMDBModel]) -> ()) {
         
         let url = EndPoint.tmdbURL + APIKey.TMDB_KEY + "&page=\(page)"
+        print("123",Thread.isMainThread)
         
-        AF.request(url, method: .get).validate().responseJSON(queue: .global()) { response in
+        AF.request(url, method: .get).validate().responseJSON { response in
+            print("456", Thread.isMainThread)
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -106,5 +108,47 @@ class FetchTrailerLinkAPIManager {
             }
         }
         
+    }
+}
+
+class FetchCastAPIManager {
+    private init() {}
+    
+    static let shared = FetchCastAPIManager()
+    
+    func fetchCast(movieData: TMDBModel, completionHandler: @escaping ([CastModel], [CrewModel]) -> ()) {
+        
+        let url = EndPoint.castURL + "\(movieData.movieId)" + EndPoint.castCreditURL + APIKey.TMDB_KEY
+        
+        AF.request(url, method: .get).validate().responseJSON(queue: .global()) { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+//                for cast in json["cast"].arrayValue {
+//                    let profileImageURL = cast["profile_path"].stringValue
+//                    let name = cast["name"].stringValue
+//                    let department = cast["known_for_department"].stringValue
+//
+//                    self.castList.append(CastModel(name: name, profileURL: profileImageURL, department: department))
+//                }
+//
+//                for crew in json["crew"].arrayValue {
+//                    let name = crew["name"].stringValue
+//                    let department = crew["known_for_department"].stringValue
+//
+//                    self.crewList.append(CrewModel(name: name, department: department))
+//                }
+                
+                let cast = json["cast"].arrayValue.map { CastModel(name: $0["name"].stringValue, profileURL: $0["profile_path"].stringValue, department: $0["known_for_department"].stringValue) }
+                let crew = json["crew"].arrayValue.map { CrewModel(name: $0["name"].stringValue, department: $0["known_for_department"].stringValue) }
+                //self.tableview.reloadData()
+                
+                completionHandler(cast, crew)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

@@ -56,11 +56,14 @@ class TMDBViewController: UIViewController {
     }
     
     func fetchMovieData(page: Int) {
-        FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
-            self.movieList.append(contentsOf: list)
-            DispatchQueue.main.async {
+        DispatchQueue.global().async {
+            print(Thread.isMainThread)
+            FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
+                print(Thread.isMainThread)
+                self.movieList.append(contentsOf: list)
                 self.collectionView.reloadData()
             }
+            print("789",Thread.isMainThread)
         }
     }
     
