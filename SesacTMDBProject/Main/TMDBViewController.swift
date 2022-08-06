@@ -49,80 +49,32 @@ class TMDBViewController: UIViewController {
         
         navigationItem.backButtonTitle = ""
     }
-
     
     func fetchMovieData(page: Int) {
-        
-        let url = EndPoint.tmdbURL + APIKey.TMDB_KEY + "&page=\(page)"
-        
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-                
-                for movie in json["results"].arrayValue {
-                    let originalTitle = movie["original_title"].stringValue
-                    let releaseDate = movie["release_date"].stringValue
-                    let rate = movie["vote_average"].doubleValue
-                    let imageURL = movie["backdrop_path"].stringValue
-                    let overview = movie["overview"].stringValue
-                    let movieId = movie["id"].intValue
-                    let posterURL = movie["poster_path"].stringValue
-                    let genreId = movie["genre_ids"][0].intValue
-                    
-                    let data = TMDBModel(title: originalTitle, releaseDate: releaseDate, rate: rate, imageURL: imageURL, overview: overview, movieId: movieId, posterURL: posterURL, genre: genreId)
-                    
-                    self.movieList.append(data)
-                }
-                
-                
-                
-                self.collectionView.reloadData()
-                print(self.movieList.count)
-            case .failure(let error):
-                print(error)
-            }
+        FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
+            self.movieList = list
+            self.collectionView.reloadData()
         }
     }
     
     func fetchGenre() {
         
-        let url = EndPoint.genreURL + APIKey.TMDB_KEY
-        
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                for genre in json["genres"].arrayValue {
-                    self.genreDic[genre["id"].intValue] = genre["name"].stringValue
-                }
-                self.collectionView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
+        FetchGenreAPIManager.shared.fetchGenre { genreDic in
+            self.genreDic = genreDic
+            self.collectionView.reloadData()
         }
     }
     
-    func fetchTrailerLink(movieId: Int, completionHandler: @escaping (String) -> ()) {
-        
-        let url = EndPoint.trailerURL + "\(movieId)" + EndPoint.trailerVideoURL + APIKey.TMDB_KEY
-        
-        AF.request(url, method: .get).validate(statusCode: 200..<400).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-//                self.trailerKey = json["results"][0]["key"].stringValue
-//                print(self.trailerKey)
-                completionHandler(json["results"][0]["key"].stringValue)
-
-            case .failure(let error):
-                print(error)
-            }
+    func fetchTrailerLink(movieId: Int) {
+        FetchTrailerLinkAPIManager.shared.fetchTrailerLink(movieId: movieId) { trailerKey in
+            self.trailerKey = trailerKey
+            let sb = UIStoryboard(name: "VideoView", bundle: nil)
+            guard let vc = sb.instantiateViewController(withIdentifier: VideoViewController.identifier) as? VideoViewController else { return }
+            vc.trailerKey = self.trailerKey
+            let naviationController = UINavigationController(rootViewController: vc)
+            naviationController.modalPresentationStyle = .fullScreen
+            self.present(naviationController, animated: true)
         }
-        
     }
     
 }

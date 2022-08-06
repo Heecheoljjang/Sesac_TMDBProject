@@ -17,6 +17,7 @@
 		979AA3D1289D2814009378EC /* VideoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 979AA3D0289D2814009378EC /* VideoView.storyboard */; };
 		979AA3D3289D2E8D009378EC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AA3D2289D2E8D009378EC /* VideoViewController.swift */; };
 		979AA3D6289D6EA0009378EC /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 979AA3D5289D6EA0009378EC /* JGProgressHUD */; };
+		979AA3D9289D7AD4009378EC /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AA3D8289D7AD4009378EC /* TMDBAPIManager.swift */; };
 		97E5A46B2899FA8F00FFCB3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */; };
 		97E5A46D2899FA8F00FFCB3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */; };
 		97E5A46F2899FA8F00FFCB3D /* TMDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46E2899FA8F00FFCB3D /* TMDBViewController.swift */; };
@@ -48,6 +49,7 @@
 		9795D38A289A8C84003F2BA0 /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
 		979AA3D0289D2814009378EC /* VideoView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoView.storyboard; sourceTree = "<group>"; };
 		979AA3D2289D2E8D009378EC /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		979AA3D8289D7AD4009378EC /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		97E5A4672899FA8F00FFCB3D /* SesacTMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SesacTMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,10 +119,19 @@
 			path = VideoView;
 			sourceTree = "<group>";
 		};
+		979AA3D7289D7A82009378EC /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				979AA3D8289D7AD4009378EC /* TMDBAPIManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		97E5A45E2899FA8F00FFCB3D = {
 			isa = PBXGroup;
 			children = (
 				97E5A47E2899FAA500FFCB3D /* .gitignore */,
+				979AA3D7289D7A82009378EC /* Manager */,
 				97E5A4692899FA8F00FFCB3D /* SesacTMDBProject */,
 				97E5A4682899FA8F00FFCB3D /* Products */,
 			);
@@ -330,6 +341,7 @@
 				97ECF19F289C3AA000A550F5 /* GenreModel.swift in Sources */,
 				9795D377289A7DFA003F2BA0 /* EndPoint.swift in Sources */,
 				97ECF178289BCBBE00A550F5 /* MovieDetailViewController.swift in Sources */,
+				979AA3D9289D7AD4009378EC /* TMDBAPIManager.swift in Sources */,
 				97ECF185289BDB3F00A550F5 /* UITableViewCell+Extension.swift in Sources */,
 				9795D387289A8555003F2BA0 /* TMDBCollectionViewCell.swift in Sources */,
 				97ECF189289BEECA00A550F5 /* OverviewTableViewCell.swift in Sources */,

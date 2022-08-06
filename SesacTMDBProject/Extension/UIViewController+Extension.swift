@@ -32,14 +32,7 @@ extension TMDBViewController {
     @objc func showVideo(sender: UIButton) {
         
         //네트워킹
-        fetchTrailerLink(movieId: movieList[sender.tag].movieId) { key in
-            let sb = UIStoryboard(name: "VideoView", bundle: nil)
-            guard let vc = sb.instantiateViewController(withIdentifier: VideoViewController.identifier) as? VideoViewController else { return }
-            vc.trailerKey = key
-            let naviationController = UINavigationController(rootViewController: vc)
-            naviationController.modalPresentationStyle = .fullScreen
-            self.present(naviationController, animated: true)
-        }
+        fetchTrailerLink(movieId: movieList[sender.tag].movieId)
     }
     
 }
