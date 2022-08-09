@@ -32,7 +32,7 @@ class ReuseTableViewCell: UITableViewCell {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 200, height: 190)
+        layout.itemSize = CGSize(width: self.frame.size.height * 0.6, height: 300)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
