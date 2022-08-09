@@ -54,15 +54,16 @@ class TMDBViewController: UIViewController {
         layout.minimumLineSpacing = spacing
         collectionView.collectionViewLayout = layout
     }
-    
+
     func fetchMovieData(page: Int) {
-        print(Thread.isMainThread)
         FetchMovieDataAPIManager.shared.fetchMovieData(page: page) { list in
-            print(Thread.isMainThread)
             self.movieList.append(contentsOf: list)
-            self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
+    
     func fetchGenre() {
         FetchGenreAPIManager.shared.fetchGenre { genreDic in
             self.genreDic = genreDic
@@ -86,6 +87,7 @@ class TMDBViewController: UIViewController {
         }
     }
 }
+
 
 extension TMDBViewController: UICollectionViewDataSourcePrefetching {
     
