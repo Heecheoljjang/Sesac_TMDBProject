@@ -10,31 +10,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="gTV-IL-0wX" customClass="MovieCollectionViewCell" customModule="SesacTMDBProject" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="166" height="161"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieCollectionViewCell" customModule="SesacTMDBProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="33"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="166" height="161"/>
+                <rect key="frame" x="0.0" y="0.0" width="334" height="33"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gf5-p2-xBK" customClass="ReuseView" customModule="SesacTMDBProject" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="166" height="161"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pa-fC-3Iq" customClass="ReuseView" customModule="SesacTMDBProject" customModuleProvider="target">
+                        <rect key="frame" x="4" y="4" width="326" height="25"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="gf5-p2-xBK" secondAttribute="trailing" id="4yj-hf-ZgJ"/>
-                <constraint firstItem="gf5-p2-xBK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Kyh-XI-leh"/>
-                <constraint firstAttribute="bottom" secondItem="gf5-p2-xBK" secondAttribute="bottom" id="fUq-7K-Kb1"/>
-                <constraint firstItem="gf5-p2-xBK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="w16-Os-69c"/>
+                <constraint firstItem="9Pa-fC-3Iq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="6cx-Zn-5iw"/>
+                <constraint firstAttribute="trailing" secondItem="9Pa-fC-3Iq" secondAttribute="trailing" constant="4" id="lgW-2r-1TD"/>
+                <constraint firstAttribute="bottom" secondItem="9Pa-fC-3Iq" secondAttribute="bottom" constant="4" id="nBu-CX-obP"/>
+                <constraint firstItem="9Pa-fC-3Iq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="pMR-h7-iFD"/>
             </constraints>
-            <size key="customSize" width="166" height="161"/>
+            <size key="customSize" width="334" height="33"/>
             <connections>
-                <outlet property="movieView" destination="gf5-p2-xBK" id="ytD-nq-M9N"/>
+                <outlet property="movieView" destination="9Pa-fC-3Iq" id="IOP-Um-Avw"/>
             </connections>
-            <point key="canvasLocation" x="221.73913043478262" y="136.94196428571428"/>
+            <point key="canvasLocation" x="213.04347826086959" y="-59.263392857142854"/>
         </collectionViewCell>
     </objects>
     <resources>
