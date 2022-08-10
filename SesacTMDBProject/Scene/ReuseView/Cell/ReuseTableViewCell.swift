@@ -31,8 +31,10 @@ class ReuseTableViewCell: UITableViewCell {
     func collectionViewLayout() -> UICollectionViewFlowLayout {
         
         let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 4
+        let width = UIScreen.main.bounds.width
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 140, height: 200)
+        layout.itemSize = CGSize(width: (width - (spacing * 6)) / 3, height: 200)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         layout.minimumLineSpacing = 0
         

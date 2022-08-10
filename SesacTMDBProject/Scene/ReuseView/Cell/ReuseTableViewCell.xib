@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-u0-jRi">
-                        <rect key="frame" x="0.0" y="21" width="438" height="154"/>
+                        <rect key="frame" x="0.0" y="20" width="438" height="155"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rpj-Xt-Rkm">
                             <size key="itemSize" width="128" height="128"/>
@@ -28,7 +28,10 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ue0-Qf-CAP">
-                        <rect key="frame" x="8" y="0.0" width="422" height="21"/>
+                        <rect key="frame" x="8" y="0.0" width="422" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="KFv-8l-39E"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -49,7 +52,7 @@
                 <outlet property="movieCollectionView" destination="2Jv-u0-jRi" id="FFq-iS-SER"/>
                 <outlet property="sectionLabel" destination="ue0-Qf-CAP" id="43g-gB-0Pi"/>
             </connections>
-            <point key="canvasLocation" x="164" y="-38"/>
+            <point key="canvasLocation" x="163.768115942029" y="-38.504464285714285"/>
         </tableViewCell>
     </objects>
     <resources>

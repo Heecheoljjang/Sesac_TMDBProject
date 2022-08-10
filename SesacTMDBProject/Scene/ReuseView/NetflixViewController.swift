@@ -64,7 +64,7 @@ extension NetflixViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 250
+        return 236
 
     }
 }
@@ -80,6 +80,7 @@ extension NetflixViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let url = URL(string: recommendation[keys[collectionView.tag]]![indexPath.item])
         cell.movieView.posterImageView.kf.setImage(with: url)
+        cell.movieView.posterImageView.contentMode = .scaleAspectFill
         
         return cell
     }
