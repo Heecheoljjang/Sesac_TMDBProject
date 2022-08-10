@@ -15,14 +15,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         setUpUI()
         
-        backgroundColor = .orange
         
     }
 
     func setUpUI() {
-        movieView.backgroundColor = .red
+        movieView.backgroundColor = .clear
         movieView.posterImageView.layer.cornerRadius = 10
-        movieView.posterImageView.backgroundColor = .yellow
+        movieView.posterImageView.backgroundColor = .clear
         
     }
 }

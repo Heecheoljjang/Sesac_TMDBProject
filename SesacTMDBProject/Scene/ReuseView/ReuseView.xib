@@ -20,21 +20,13 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85w-7q-GZi">
                     <rect key="frame" x="4" y="4" width="339" height="361"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdq-oR-iQm">
-                    <rect key="frame" x="152.5" y="336" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="85w-7q-GZi" secondAttribute="bottom" constant="4" id="64N-xo-U43"/>
-                <constraint firstItem="zdq-oR-iQm" firstAttribute="centerX" secondItem="7Aa-dP-pqh" secondAttribute="centerX" id="Wsy-ft-qry"/>
                 <constraint firstItem="85w-7q-GZi" firstAttribute="leading" secondItem="7Aa-dP-pqh" secondAttribute="leading" constant="4" id="XFk-rH-wfh"/>
                 <constraint firstAttribute="trailing" secondItem="85w-7q-GZi" secondAttribute="trailing" constant="4" id="YnH-h1-RcJ"/>
                 <constraint firstItem="85w-7q-GZi" firstAttribute="top" secondItem="7Aa-dP-pqh" secondAttribute="top" constant="4" id="ZN1-eE-NGE"/>
-                <constraint firstAttribute="bottom" secondItem="zdq-oR-iQm" secondAttribute="bottom" constant="12" id="mJa-RP-UYw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-174.63768115942031" y="-131.58482142857142"/>

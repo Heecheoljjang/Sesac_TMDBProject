@@ -18,6 +18,83 @@ class FetchMovieDataAPIManager {
     //Singleton
     static let shared = FetchMovieDataAPIManager()
     
+    func fetchRecommendationPoster(completionHandler: @escaping ([String:[String]]) -> ()) {
+        var resultDic: [String: [String]] = [:]
+        var tempDic: [String: Int] = [:]
+        
+        FetchMovieDataAPIManager.shared.fetchMovieId { value in
+            tempDic = value
+            let keys = tempDic.keys.sorted(by: <)
+            FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[0]]!) { value in
+                resultDic[keys[0]] = value
+                FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[1]]!) { value in
+                    resultDic[keys[1]] = value
+                    FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[2]]!) { value in
+                        resultDic[keys[2]] = value
+                        FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[3]]!) { value in
+                            resultDic[keys[3]] = value
+                            FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[4]]!) { value in
+                                resultDic[keys[4]] = value
+                                FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[5]]!) { value in
+                                    resultDic[keys[5]] = value
+                                    FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[6]]!) { value in
+                                        resultDic[keys[6]] = value
+                                        FetchMovieDataAPIManager.shared.fetchRecommendation(id: tempDic[keys[7]]!) { value in
+                                            resultDic[keys[7]] = value
+                                            completionHandler(resultDic)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchRecommendation(id: Int, completionHandler: @escaping ([String]) -> ()) {
+        
+        let url = EndPoint.recommendationURL + "\(id)" + EndPoint.recommendationKeyURL + APIKey.TMDB_KEY + "&language=ko-KR&page=1"
+        
+        AF.request(url, method: .get).validate().responseJSON() { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+                let imageList = json["results"].arrayValue.map { EndPoint.imageURL + $0["poster_path"].stringValue }
+                
+                completionHandler(imageList)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    func fetchMovieId(completionHandler: @escaping ([String:Int]) -> () ) {
+        
+        let url = EndPoint.tmdbURL + APIKey.TMDB_KEY + "&language=ko-KR&page=1"
+        
+        AF.request(url, method: .get).validate().responseJSON() { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+                var dictionary: [String: Int] = [:]
+                
+                json["results"].arrayValue.map { dictionary[$0["title"].stringValue] = $0["id"].intValue }
+                
+                completionHandler(dictionary)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func fetchMovieData(page: Int, completionHandler: @escaping ([TMDBModel]) -> ()) {
         
         let url = EndPoint.tmdbURL + APIKey.TMDB_KEY + "&page=\(page)"

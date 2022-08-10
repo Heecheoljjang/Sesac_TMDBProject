@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-u0-jRi">
-                        <rect key="frame" x="0.0" y="25" width="438" height="150"/>
+                        <rect key="frame" x="0.0" y="21" width="438" height="154"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rpj-Xt-Rkm">
                             <size key="itemSize" width="128" height="128"/>
@@ -28,7 +28,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ue0-Qf-CAP">
-                        <rect key="frame" x="16" y="0.0" width="406" height="21"/>
+                        <rect key="frame" x="8" y="0.0" width="422" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,10 +37,10 @@
                 <constraints>
                     <constraint firstItem="2Jv-u0-jRi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2BG-nO-qxO"/>
                     <constraint firstAttribute="trailing" secondItem="2Jv-u0-jRi" secondAttribute="trailing" id="6qd-oY-QbP"/>
-                    <constraint firstItem="ue0-Qf-CAP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="9dS-bk-yGo"/>
-                    <constraint firstAttribute="trailing" secondItem="ue0-Qf-CAP" secondAttribute="trailing" constant="16" id="LbG-Ww-fZH"/>
+                    <constraint firstItem="ue0-Qf-CAP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="9dS-bk-yGo"/>
+                    <constraint firstAttribute="trailing" secondItem="ue0-Qf-CAP" secondAttribute="trailing" constant="8" id="LbG-Ww-fZH"/>
                     <constraint firstAttribute="bottom" secondItem="2Jv-u0-jRi" secondAttribute="bottom" id="NqE-9d-2M4"/>
-                    <constraint firstItem="2Jv-u0-jRi" firstAttribute="top" secondItem="ue0-Qf-CAP" secondAttribute="bottom" constant="4" id="QNH-Op-y6u"/>
+                    <constraint firstItem="2Jv-u0-jRi" firstAttribute="top" secondItem="ue0-Qf-CAP" secondAttribute="bottom" id="QNH-Op-y6u"/>
                     <constraint firstItem="ue0-Qf-CAP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aeA-yz-MEr"/>
                 </constraints>
             </tableViewCellContentView>

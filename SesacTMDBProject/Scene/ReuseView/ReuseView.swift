@@ -21,7 +21,8 @@ class ReuseView: UIView {
     func loadView() {
         let view = UINib(nibName: "ReuseView", bundle: nil).instantiate(withOwner: self).first as! UIView
         view.frame = bounds
-        view.backgroundColor = .green
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = true
 //        posterImageView.layer.cornerRadius = 10
 //        posterImageView.backgroundColor = .blue
         self.addSubview(view)
