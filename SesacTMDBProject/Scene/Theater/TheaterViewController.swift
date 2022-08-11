@@ -15,7 +15,7 @@ class TheaterViewController: UIViewController {
     
     let theater = TheaterList()
     var coordinateList: [CLLocationCoordinate2D] = []
-    var center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+    var center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270) //새싹
     
     let locationManager = CLLocationManager()
     
@@ -24,13 +24,9 @@ class TheaterViewController: UIViewController {
 
         view.backgroundColor = .black
         setUpNavigationBar()
-        
-        //새싹 좌표: 37.517829, 126.886270
-        
+                
         locationManager.delegate = self
-        
-        //coordinateList = theater.mapAnnotations.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
-        
+
         setRegion(center: center)
         setAnnotation(center: center, theaterLocation: theater.mapAnnotations)
         
@@ -104,7 +100,82 @@ class TheaterViewController: UIViewController {
     }
 }
 
+extension TheaterViewController {
+    
+    //버전체크 및 권한 체크
+    func checkUserDeviceLocationServiceAuthorization() {
+        let autorizationStatus: CLAuthorizationStatus
+        
+        if #available(iOS 14.0, *) {
+            autorizationStatus = locationManager.authorizationStatus
+        } else {
+            autorizationStatus = CLLocationManager.authorizationStatus()
+        }
+        
+        //위치서비스 활성화체크
+        if CLLocationManager.locationServicesEnabled() {
+            checkUserCurrentLocationAuthorization(autorizationStatus)
+        } else {
+            print("위치 서비스가 꺼져 있습니다.")
+        }
+    }
+    
+    // 사용자의 위치 권한 상태 확인
+    func checkUserCurrentLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
+        
+        switch authorizationStatus {
+        case .notDetermined:
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            print("위치 권한을 허용해주세요.")
+            showRequestLocationServiceAlert()
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            print("default")
+        }
+    }
+    func showRequestLocationServiceAlert() {
+      let requestLocationServiceAlert = UIAlertController(title: "위치정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
+      let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
+          
+          //설정페이지로 가는링크
+          if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+              UIApplication.shared.open(appSetting)
+          }
+          
+      }
+      let cancel = UIAlertAction(title: "취소", style: .default)
+      requestLocationServiceAlert.addAction(cancel)
+      requestLocationServiceAlert.addAction(goSetting)
+      
+      present(requestLocationServiceAlert, animated: true, completion: nil)
+    }
+}
+
 extension TheaterViewController: CLLocationManagerDelegate {
     
+    //사용자의 위치를 성공적으로 가져왔는지.
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(#function)
+        
+        if let center = locations.last?.coordinate {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.center = center
+            setRegion(center: center)
+            setAnnotation(center: center, theaterLocation: theater.mapAnnotations)
+        }
+        locationManager.stopUpdatingLocation()
+    }
+    
+    //성공적으로 가져오지 못했는지
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(#function)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkUserDeviceLocationServiceAuthorization()
+    }
     
 }

@@ -61,7 +61,6 @@ class FetchMovieDataAPIManager {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
                 
                 let imageList = json["results"].arrayValue.map { EndPoint.imageURL + $0["poster_path"].stringValue }
                 
@@ -81,7 +80,6 @@ class FetchMovieDataAPIManager {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print(json)
                 
                 var dictionary: [String: Int] = [:]
                 
