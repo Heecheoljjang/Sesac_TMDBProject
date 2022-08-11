@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class TheaterViewController: UIViewController {
     
@@ -14,12 +15,26 @@ class TheaterViewController: UIViewController {
     
     let theater = TheaterList()
     var filteredList: [Theater] = []
+    var locationList: [CLLocationCoordinate2D] = []
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .black
         setUpNavigationBar()
+        
+        //새싹 좌표: 37.517829, 126.886270
+        
+        locationManager.delegate = self
+        
+        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+        locationList = theater.mapAnnotations.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
+
+        setRegionAndAnnotation(center: center, theaterLocation: theater.mapAnnotations)
+        
+        
 
     }
     
@@ -53,4 +68,30 @@ class TheaterViewController: UIViewController {
         
         present(alert, animated: true)
     }
+    
+    func setRegionAndAnnotation(center: CLLocationCoordinate2D, theaterLocation: [Theater]) {
+        
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 3000, longitudinalMeters: 3000)
+        mapView.setRegion(region, animated: true)
+        
+        let centerAnnotation = MKPointAnnotation()
+        centerAnnotation.title = "현재 위치"
+        centerAnnotation.coordinate = center
+        
+        var tempList: [MKPointAnnotation] = []
+        for location in theaterLocation {
+            let annotation = MKPointAnnotation()
+            annotation.title = "\(location.location)"
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            tempList.append(annotation)
+        }
+        mapView.addAnnotation(centerAnnotation)
+        mapView.addAnnotations(tempList)
+        
+    }
+}
+
+extension TheaterViewController: CLLocationManagerDelegate {
+    
+    
 }
