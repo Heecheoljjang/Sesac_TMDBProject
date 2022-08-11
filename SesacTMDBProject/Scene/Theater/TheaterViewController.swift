@@ -14,8 +14,8 @@ class TheaterViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let theater = TheaterList()
-    var filteredList: [Theater] = []
-    var locationList: [CLLocationCoordinate2D] = []
+    var coordinateList: [CLLocationCoordinate2D] = []
+    var center: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
     
     let locationManager = CLLocationManager()
     
@@ -29,11 +29,10 @@ class TheaterViewController: UIViewController {
         
         locationManager.delegate = self
         
-        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-        locationList = theater.mapAnnotations.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
-
-        setRegionAndAnnotation(center: center, theaterLocation: theater.mapAnnotations)
+        //coordinateList = theater.mapAnnotations.map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
         
+        setRegion(center: center)
+        setAnnotation(center: center, theaterLocation: theater.mapAnnotations)
         
 
     }
@@ -44,21 +43,35 @@ class TheaterViewController: UIViewController {
     
     @objc func showFilterMenu() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let megabox = UIAlertAction(title: "메가박스", style: .default) { _ in
+        
+        let megabox = UIAlertAction(title: "메가박스", style: .default) { value in
+            guard let type = value.title else { return }
+
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
+            self.setAnnotation(center: self.center, theaterLocation: self.theater.mapAnnotations.filter { $0.type == type})
         }
-        let lotte = UIAlertAction(title: "롯데시네마", style: .default) { _ in
+        let lotte = UIAlertAction(title: "롯데시네마", style: .default) { value in
+            guard let type = value.title else { return }
+
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
+            self.setAnnotation(center: self.center, theaterLocation: self.theater.mapAnnotations.filter { $0.type == type})
         }
-        let cgv = UIAlertAction(title: "CGV", style: .default) { _ in
+        let cgv = UIAlertAction(title: "CGV", style: .default) { value in
+            guard let type = value.title else { return }
+
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
+            self.setAnnotation(center: self.center, theaterLocation: self.theater.mapAnnotations.filter { $0.type == type})
         }
-        let all = UIAlertAction(title: "전체보기", style: .default) { _ in
+        let all = UIAlertAction(title: "전체보기", style: .default) { value in
+            self.mapView.removeAnnotations(self.mapView.annotations)
             
+            self.setAnnotation(center: self.center, theaterLocation: self.theater.mapAnnotations)
         }
-        let cancel = UIAlertAction(title: "취소", style: .cancel) { _ in
-            
-        }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
         
         alert.addAction(megabox)
         alert.addAction(lotte)
@@ -69,11 +82,12 @@ class TheaterViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func setRegionAndAnnotation(center: CLLocationCoordinate2D, theaterLocation: [Theater]) {
-        
+    func setRegion(center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 3000, longitudinalMeters: 3000)
         mapView.setRegion(region, animated: true)
-        
+    }
+    
+    func setAnnotation(center: CLLocationCoordinate2D, theaterLocation: [Theater]) {
         let centerAnnotation = MKPointAnnotation()
         centerAnnotation.title = "현재 위치"
         centerAnnotation.coordinate = center
@@ -87,7 +101,6 @@ class TheaterViewController: UIViewController {
         }
         mapView.addAnnotation(centerAnnotation)
         mapView.addAnnotations(tempList)
-        
     }
 }
 
