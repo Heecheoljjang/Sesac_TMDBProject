@@ -19,6 +19,8 @@ class NetflixViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpNavigationController()
 
         view.backgroundColor = .black
         movieTableView.delegate = self
@@ -29,11 +31,25 @@ class NetflixViewController: UIViewController {
         //받아와서 6개만 돌려보기
         FetchMovieDataAPIManager.shared.fetchRecommendationPoster { value in
             self.recommendation = value
-            print(self.recommendation)
             self.keys = self.recommendation.keys.sorted(by: <).filter { self.recommendation[$0]?.count != 0 }
             self.movieTableView.reloadData()
         }
         
+    }
+    
+    func setUpNavigationController() {
+        title = "MY MEDIA"
+        navigationController?.navigationBar.barTintColor = .clear
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "location"), style: .plain, target: self, action: #selector(showTheater))
+        navigationController?.navigationBar.tintColor = .lightGray
+    }
+    
+    @objc func showTheater() {
+        let sb = UIStoryboard(name: Storyboard.Theater.rawValue, bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: TheaterViewController.identifier) as? TheaterViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -64,12 +80,12 @@ extension NetflixViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 236
+        return indexPath.row == 1 ? 436 : 236
 
     }
 }
 
-extension NetflixViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension NetflixViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recommendation[keys[collectionView.tag]]!.count
@@ -85,4 +101,13 @@ extension NetflixViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView.tag == 1 {
+            return CGSize(width: (UIScreen.main.bounds.width - (4 * 6)) / 1.5, height: 400)
+        } else {
+            return CGSize(width: (UIScreen.main.bounds.width - (4 * 6)) / 3, height: 200)
+        }
+    }
 }
+
+

@@ -22,7 +22,7 @@ class ReuseTableViewCell: UITableViewCell {
         movieCollectionView.backgroundColor = .black
         movieCollectionView.collectionViewLayout = collectionViewLayout()
         
-        sectionLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        sectionLabel.font = .systemFont(ofSize: 20, weight: .bold)
         sectionLabel.backgroundColor = .black
         sectionLabel.textColor = .white
         backgroundColor = .black

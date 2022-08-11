@@ -26,6 +26,10 @@
 		979AA3D3289D2E8D009378EC /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AA3D2289D2E8D009378EC /* VideoViewController.swift */; };
 		979AA3D6289D6EA0009378EC /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 979AA3D5289D6EA0009378EC /* JGProgressHUD */; };
 		979AA3D9289D7AD4009378EC /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AA3D8289D7AD4009378EC /* TMDBAPIManager.swift */; };
+		97A1991B28A502C000E5E192 /* Theater.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97A1991A28A502C000E5E192 /* Theater.storyboard */; };
+		97A1991D28A502CC00E5E192 /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1991C28A502CC00E5E192 /* TheaterViewController.swift */; };
+		97A1992028A503D900E5E192 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1991F28A503D900E5E192 /* Storyboard.swift */; };
+		97A1992228A50B5E00E5E192 /* TheaterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1992128A50B5E00E5E192 /* TheaterModel.swift */; };
 		97E5A46B2899FA8F00FFCB3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */; };
 		97E5A46D2899FA8F00FFCB3D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */; };
 		97E5A46F2899FA8F00FFCB3D /* TMDBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5A46E2899FA8F00FFCB3D /* TMDBViewController.swift */; };
@@ -66,6 +70,10 @@
 		979AA3D0289D2814009378EC /* VideoView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoView.storyboard; sourceTree = "<group>"; };
 		979AA3D2289D2E8D009378EC /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		979AA3D8289D7AD4009378EC /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
+		97A1991A28A502C000E5E192 /* Theater.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Theater.storyboard; sourceTree = "<group>"; };
+		97A1991C28A502CC00E5E192 /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
+		97A1991F28A503D900E5E192 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		97A1992128A50B5E00E5E192 /* TheaterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterModel.swift; sourceTree = "<group>"; };
 		97E5A4672899FA8F00FFCB3D /* SesacTMDBProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SesacTMDBProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +118,7 @@
 		9703FCA928A24DA9008D90D9 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				97A1991928A502A800E5E192 /* Theater */,
 				9703FCAA28A24DF0008D90D9 /* ReuseView */,
 				979AA3CF289D27F8009378EC /* VideoView */,
 				97ECF176289BCB0600A550F5 /* MovieDetail */,
@@ -156,6 +165,7 @@
 				97ECF192289BEFEB00A550F5 /* CastModel.swift */,
 				97ECF19C289C077000A550F5 /* CrewModel.swift */,
 				97ECF19E289C3AA000A550F5 /* GenreModel.swift */,
+				97A1992128A50B5E00E5E192 /* TheaterModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,9 +187,19 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		97A1991928A502A800E5E192 /* Theater */ = {
+			isa = PBXGroup;
+			children = (
+				97A1991A28A502C000E5E192 /* Theater.storyboard */,
+				97A1991C28A502CC00E5E192 /* TheaterViewController.swift */,
+			);
+			path = Theater;
+			sourceTree = "<group>";
+		};
 		97E5A45E2899FA8F00FFCB3D = {
 			isa = PBXGroup;
 			children = (
+				97A1991F28A503D900E5E192 /* Storyboard.swift */,
 				97E5A47E2899FAA500FFCB3D /* .gitignore */,
 				979AA3D7289D7A82009378EC /* Manager */,
 				97E5A4692899FA8F00FFCB3D /* SesacTMDBProject */,
@@ -359,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97ECF174289BCAAE00A550F5 /* MovieDetail.storyboard in Resources */,
+				97A1991B28A502C000E5E192 /* Theater.storyboard in Resources */,
 				9795D388289A8555003F2BA0 /* TMDBCollectionViewCell.xib in Resources */,
 				97ECF199289BFFBB00A550F5 /* CrewTableViewCell.xib in Resources */,
 				97E5A47F2899FAA500FFCB3D /* .gitignore in Resources */,
@@ -391,6 +412,7 @@
 				9795D38B289A8C84003F2BA0 /* TMDBModel.swift in Sources */,
 				97E5A46F2899FA8F00FFCB3D /* TMDBViewController.swift in Sources */,
 				97E5A46B2899FA8F00FFCB3D /* AppDelegate.swift in Sources */,
+				97A1992228A50B5E00E5E192 /* TheaterModel.swift in Sources */,
 				97ECF193289BEFEB00A550F5 /* CastModel.swift in Sources */,
 				9703FCC428A2B634008D90D9 /* MovieCollectionViewCell.swift in Sources */,
 				97ECF19F289C3AA000A550F5 /* GenreModel.swift in Sources */,
@@ -400,8 +422,10 @@
 				979AA3D9289D7AD4009378EC /* TMDBAPIManager.swift in Sources */,
 				97ECF185289BDB3F00A550F5 /* UITableViewCell+Extension.swift in Sources */,
 				9795D387289A8555003F2BA0 /* TMDBCollectionViewCell.swift in Sources */,
+				97A1991D28A502CC00E5E192 /* TheaterViewController.swift in Sources */,
 				97ECF189289BEECA00A550F5 /* OverviewTableViewCell.swift in Sources */,
 				97ECF19D289C077000A550F5 /* CrewModel.swift in Sources */,
+				97A1992028A503D900E5E192 /* Storyboard.swift in Sources */,
 				97E5A4822899FAE300FFCB3D /* APIKey.swift in Sources */,
 				97E5A46D2899FA8F00FFCB3D /* SceneDelegate.swift in Sources */,
 				97ECF181289BD84300A550F5 /* Protocol.swift in Sources */,
