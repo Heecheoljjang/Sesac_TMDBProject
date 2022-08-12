@@ -7,7 +7,7 @@
 
 import UIKit
 import MapKit
-import CoreLocation
+//import CoreLocation
 
 class TheaterViewController: UIViewController {
     

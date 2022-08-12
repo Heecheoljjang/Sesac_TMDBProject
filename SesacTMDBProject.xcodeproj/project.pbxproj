@@ -15,6 +15,10 @@
 		9703FCBF28A2B0FB008D90D9 /* ReuseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9703FCBE28A2B0FB008D90D9 /* ReuseView.xib */; };
 		9703FCC428A2B634008D90D9 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9703FCC228A2B634008D90D9 /* MovieCollectionViewCell.swift */; };
 		9703FCC528A2B634008D90D9 /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9703FCC328A2B634008D90D9 /* MovieCollectionViewCell.xib */; };
+		970DBC1728A6346700339CFC /* LocationTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 970DBC1628A6346700339CFC /* LocationTest.storyboard */; };
+		970DBC1928A6347300339CFC /* LocationTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970DBC1828A6347300339CFC /* LocationTestViewController.swift */; };
+		970DBC1B28A6889A00339CFC /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970DBC1A28A6889A00339CFC /* PickerViewController.swift */; };
+		970DBC1D28A688A400339CFC /* PHPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 970DBC1C28A688A400339CFC /* PHPicker.storyboard */; };
 		9795D377289A7DFA003F2BA0 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9795D376289A7DFA003F2BA0 /* EndPoint.swift */; };
 		9795D37A289A806C003F2BA0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9795D379289A806C003F2BA0 /* Alamofire */; };
 		9795D37D289A8078003F2BA0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9795D37C289A8078003F2BA0 /* SwiftyJSON */; };
@@ -63,6 +67,10 @@
 		9703FCBE28A2B0FB008D90D9 /* ReuseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReuseView.xib; sourceTree = "<group>"; };
 		9703FCC228A2B634008D90D9 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		9703FCC328A2B634008D90D9 /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		970DBC1628A6346700339CFC /* LocationTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationTest.storyboard; sourceTree = "<group>"; };
+		970DBC1828A6347300339CFC /* LocationTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTestViewController.swift; sourceTree = "<group>"; };
+		970DBC1A28A6889A00339CFC /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		970DBC1C28A688A400339CFC /* PHPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PHPicker.storyboard; sourceTree = "<group>"; };
 		9795D376289A7DFA003F2BA0 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		9795D385289A8555003F2BA0 /* TMDBCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBCollectionViewCell.swift; sourceTree = "<group>"; };
 		9795D386289A8555003F2BA0 /* TMDBCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TMDBCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -150,6 +158,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		970DBC1528A62C5600339CFC /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				970DBC1628A6346700339CFC /* LocationTest.storyboard */,
+				970DBC1828A6347300339CFC /* LocationTestViewController.swift */,
+				970DBC1A28A6889A00339CFC /* PickerViewController.swift */,
+				970DBC1C28A688A400339CFC /* PHPicker.storyboard */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		9795D375289A7DEE003F2BA0 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +237,7 @@
 		97E5A4692899FA8F00FFCB3D /* SesacTMDBProject */ = {
 			isa = PBXGroup;
 			children = (
+				970DBC1528A62C5600339CFC /* Test */,
 				97E5A46A2899FA8F00FFCB3D /* AppDelegate.swift */,
 				97E5A46C2899FA8F00FFCB3D /* SceneDelegate.swift */,
 				97E5A4732899FA9000FFCB3D /* Assets.xcassets */,
@@ -385,6 +405,8 @@
 				97E5A47F2899FAA500FFCB3D /* .gitignore in Resources */,
 				97E5A4772899FA9000FFCB3D /* LaunchScreen.storyboard in Resources */,
 				9703FCBF28A2B0FB008D90D9 /* ReuseView.xib in Resources */,
+				970DBC1D28A688A400339CFC /* PHPicker.storyboard in Resources */,
+				970DBC1728A6346700339CFC /* LocationTest.storyboard in Resources */,
 				97ECF195289BFF8200A550F5 /* CastTableViewCell.xib in Resources */,
 				97ECF197289BFF9D00A550F5 /* OverviewTableViewCell.xib in Resources */,
 				9703FCB728A2538E008D90D9 /* ReuseTableViewCell.xib in Resources */,
@@ -405,6 +427,7 @@
 			files = (
 				9703FCB628A2538E008D90D9 /* ReuseTableViewCell.swift in Sources */,
 				97ECF183289BDAAF00A550F5 /* UIViewController+Extension.swift in Sources */,
+				970DBC1928A6347300339CFC /* LocationTestViewController.swift in Sources */,
 				9703FCB028A24F58008D90D9 /* ReuseView.swift in Sources */,
 				97ECF18F289BEF1900A550F5 /* CastTableViewCell.swift in Sources */,
 				979AA3D3289D2E8D009378EC /* VideoViewController.swift in Sources */,
@@ -414,6 +437,7 @@
 				97E5A46B2899FA8F00FFCB3D /* AppDelegate.swift in Sources */,
 				97A1992228A50B5E00E5E192 /* TheaterModel.swift in Sources */,
 				97ECF193289BEFEB00A550F5 /* CastModel.swift in Sources */,
+				970DBC1B28A6889A00339CFC /* PickerViewController.swift in Sources */,
 				9703FCC428A2B634008D90D9 /* MovieCollectionViewCell.swift in Sources */,
 				97ECF19F289C3AA000A550F5 /* GenreModel.swift in Sources */,
 				9795D377289A7DFA003F2BA0 /* EndPoint.swift in Sources */,
@@ -578,10 +602,10 @@
 				DEVELOPMENT_TEAM = 3C6U386B4C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SesacTMDBProject/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 권한을 설정해주세요.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = NetflixView;
+				INFOPLIST_KEY_UIMainStoryboardFile = PHPicker;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -607,10 +631,10 @@
 				DEVELOPMENT_TEAM = 3C6U386B4C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SesacTMDBProject/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 권한을 설정해주세요.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = NetflixView;
+				INFOPLIST_KEY_UIMainStoryboardFile = PHPicker;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
