@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIFramework
 
 import Alamofire
 import Kingfisher
@@ -47,9 +48,9 @@ class MovieDetailViewController: UIViewController {
         tableview.dataSource = self
         tableview.sectionHeaderTopPadding = 32
         
-        tableview.register(UINib(nibName: CastTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CastTableViewCell.identifier)
-        tableview.register(UINib(nibName: OverviewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.identifier)
-        tableview.register(UINib(nibName: CrewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CrewTableViewCell.identifier)
+        tableview.register(UINib(nibName: CastTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CastTableViewCell.reuseIdentifier)
+        tableview.register(UINib(nibName: OverviewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.reuseIdentifier)
+        tableview.register(UINib(nibName: CrewTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CrewTableViewCell.reuseIdentifier)
     }
     
     func setUpHeaderView(data: TMDBModel) {
@@ -99,7 +100,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            guard let cell = tableview.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier) as? OverviewTableViewCell else { return UITableViewCell() }
+            guard let cell = tableview.dequeueReusableCell(withIdentifier: OverviewTableViewCell.reuseIdentifier) as? OverviewTableViewCell else { return UITableViewCell() }
             
             cell.overviewLabel.text = movieData?.overview
             cell.overviewLabel.numberOfLines = isCollapsed ? 2 : 0
@@ -107,7 +108,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
             return cell
         } else if indexPath.section == 1 {
-            guard let cell = tableview.dequeueReusableCell(withIdentifier: CastTableViewCell.identifier) as? CastTableViewCell else { return UITableViewCell() }
+            guard let cell = tableview.dequeueReusableCell(withIdentifier: CastTableViewCell.reuseIdentifier) as? CastTableViewCell else { return UITableViewCell() }
             
             cell.nameLabel.text = castList[indexPath.item].name
             cell.departmentLabel.text = castList[indexPath.item].department
@@ -117,7 +118,7 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
             return cell
         } else {
-            guard let cell = tableview.dequeueReusableCell(withIdentifier: CrewTableViewCell.identifier) as? CrewTableViewCell else { return UITableViewCell() }
+            guard let cell = tableview.dequeueReusableCell(withIdentifier: CrewTableViewCell.reuseIdentifier) as? CrewTableViewCell else { return UITableViewCell() }
             
             cell.nameLabel.text = crewList[indexPath.item].name
             cell.departmentLabel.text = crewList[indexPath.item].department

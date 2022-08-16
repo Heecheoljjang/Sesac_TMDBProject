@@ -25,7 +25,7 @@ class PageViewController: UIPageViewController {
 
     func createViewControllerList() {
         let sb = UIStoryboard(name: "PageView", bundle: nil)
-        guard let firstVC = sb.instantiateViewController(withIdentifier: FirstViewController.identifier) as? FirstViewController, let secondVC = sb.instantiateViewController(withIdentifier: SecondViewController.identifier) as? SecondViewController, let thirdVC = sb.instantiateViewController(withIdentifier: ThirdViewController.identifier) as? ThirdViewController, let fourthVC = sb.instantiateViewController(withIdentifier: FourthViewController.identifier) as? FourthViewController else { return }
+        guard let firstVC = sb.instantiateViewController(withIdentifier: FirstViewController.reuseIdentifier) as? FirstViewController, let secondVC = sb.instantiateViewController(withIdentifier: SecondViewController.reuseIdentifier) as? SecondViewController, let thirdVC = sb.instantiateViewController(withIdentifier: ThirdViewController.reuseIdentifier) as? ThirdViewController, let fourthVC = sb.instantiateViewController(withIdentifier: FourthViewController.reuseIdentifier) as? FourthViewController else { return }
         
         viewControllerList = [firstVC, secondVC, thirdVC, fourthVC]
     }

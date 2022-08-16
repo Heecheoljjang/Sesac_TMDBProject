@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIFramework
 
 import Alamofire
 import SwiftyJSON
@@ -78,7 +79,7 @@ class TMDBViewController: UIViewController {
             self.trailerKey = trailerKey
             DispatchQueue.main.async {
                 let sb = UIStoryboard(name: "VideoView", bundle: nil)
-                guard let vc = sb.instantiateViewController(withIdentifier: VideoViewController.identifier) as? VideoViewController else { return }
+                guard let vc = sb.instantiateViewController(withIdentifier: VideoViewController.reuseIdentifier) as? VideoViewController else { return }
                 vc.trailerKey = self.trailerKey
                 let naviationController = UINavigationController(rootViewController: vc)
                 naviationController.modalPresentationStyle = .fullScreen
@@ -138,7 +139,7 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.identifier) as? MovieDetailViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.reuseIdentifier) as? MovieDetailViewController else { return }
         vc.movieData = TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL, genre: movieList[indexPath.item].genre)
         
         navigationController?.pushViewController(vc, animated: true)

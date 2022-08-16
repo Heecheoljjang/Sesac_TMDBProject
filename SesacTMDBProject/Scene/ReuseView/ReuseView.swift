@@ -23,8 +23,6 @@ class ReuseView: UIView {
         view.frame = bounds
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = true
-//        posterImageView.layer.cornerRadius = 10
-//        posterImageView.backgroundColor = .blue
         self.addSubview(view)
     }
 }

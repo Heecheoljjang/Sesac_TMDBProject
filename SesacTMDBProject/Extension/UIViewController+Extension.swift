@@ -12,12 +12,12 @@ import Alamofire
 import SwiftyJSON
 import JGProgressHUD
 
-extension UIViewController: ReuseIdentifier {
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
-}
+//extension UIViewController: ReuseIdentifier {
+//    
+//    static var identifier: String {
+//        return String(describing: self)
+//    }
+//}
 
 extension UIViewController {
    

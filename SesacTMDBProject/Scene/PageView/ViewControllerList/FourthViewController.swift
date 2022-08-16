@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIFramework
 
 class FourthViewController: UIViewController {
 
@@ -36,7 +37,7 @@ class FourthViewController: UIViewController {
         let sceneDelegate = windowScene?.delegate as? SceneDelegate // 신딜리게이트 클래스에 접근
                 
         let sb = UIStoryboard(name: "NetflixView", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: NetflixViewController.identifier) as? NetflixViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: NetflixViewController.reuseIdentifier) as? NetflixViewController else { return }
                 
         sceneDelegate?.window?.rootViewController = vc
         sceneDelegate?.window?.makeKeyAndVisible()

@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             userDefaults.set(true, forKey: "NotFirst")
             
             let sb = UIStoryboard(name: "PageView", bundle: nil)
-            guard let vc = sb.instantiateViewController(withIdentifier: PageViewController.identifier) as? PageViewController else { return }
+            guard let vc = sb.instantiateViewController(withIdentifier: PageViewController.reuseIdentifier) as? PageViewController else { return }
             
             window?.rootViewController = vc
             window?.makeKeyAndVisible()
@@ -34,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
           
             let sb = UIStoryboard(name: "NetflixView", bundle: nil)
-            guard let vc = sb.instantiateViewController(withIdentifier: NetflixViewController.identifier) as? NetflixViewController else { return }
+            guard let vc = sb.instantiateViewController(withIdentifier: NetflixViewController.reuseIdentifier) as? NetflixViewController else { return }
             
             window?.rootViewController = vc
             window?.makeKeyAndVisible()

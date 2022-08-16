@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIFramework
 
 import Kingfisher
 
@@ -41,7 +42,7 @@ class NetflixViewController: UIViewController {
     
     func showPageView() {
         let sb = UIStoryboard(name: "PageView", bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: PageViewController.identifier) as? PageViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: PageViewController.reuseIdentifier) as? PageViewController else { return }
         
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
@@ -58,7 +59,7 @@ class NetflixViewController: UIViewController {
     
     @objc func showTheater() {
         let sb = UIStoryboard(name: Storyboard.Theater.rawValue, bundle: nil)
-        guard let vc = sb.instantiateViewController(withIdentifier: TheaterViewController.identifier) as? TheaterViewController else { return }
+        guard let vc = sb.instantiateViewController(withIdentifier: TheaterViewController.reuseIdentifier) as? TheaterViewController else { return }
         navigationController?.pushViewController(vc, animated: true)
     }
 }
