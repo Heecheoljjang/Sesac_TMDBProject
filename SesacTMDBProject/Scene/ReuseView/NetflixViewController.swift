@@ -20,6 +20,8 @@ class NetflixViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //showPageView()
+        
         setUpNavigationController()
 
         view.backgroundColor = .black
@@ -35,6 +37,14 @@ class NetflixViewController: UIViewController {
             self.movieTableView.reloadData()
         }
         
+    }
+    
+    func showPageView() {
+        let sb = UIStoryboard(name: "PageView", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: PageViewController.identifier) as? PageViewController else { return }
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     func setUpNavigationController() {
