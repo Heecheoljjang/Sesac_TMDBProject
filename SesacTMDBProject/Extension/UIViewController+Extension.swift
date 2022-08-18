@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
-
+//
 //extension UIViewController: ReuseIdentifier {
 //    
 //    static var identifier: String {
@@ -25,6 +25,16 @@ extension UIViewController {
         self.dismiss(animated: true)
     }
     
+}
+
+extension UIViewController {
+    
+    func transitionViewController<T: UIViewController>(storyboard: String, viewController vc: T) -> UIViewController {
+        let sb = UIStoryboard(name: storyboard, bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: String(describing: vc)) as? T else { return UIViewController() }
+        
+        return vc
+    }
 }
 
 extension TMDBViewController {

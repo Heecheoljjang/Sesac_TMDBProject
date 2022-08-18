@@ -40,7 +40,7 @@ class NetflixViewController: UIViewController {
         
     }
     
-    func showPageView() {
+    private func showPageView() {
         let sb = UIStoryboard(name: "PageView", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: PageViewController.reuseIdentifier) as? PageViewController else { return }
         
@@ -48,7 +48,7 @@ class NetflixViewController: UIViewController {
         present(vc, animated: true)
     }
     
-    func setUpNavigationController() {
+    private func setUpNavigationController() {
         title = "MY MEDIA"
         navigationController?.navigationBar.barTintColor = .clear
         navigationController?.navigationBar.isTranslucent = false
@@ -57,7 +57,7 @@ class NetflixViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .lightGray
     }
     
-    @objc func showTheater() {
+    @objc private func showTheater() {
         let sb = UIStoryboard(name: Storyboard.Theater.rawValue, bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: TheaterViewController.reuseIdentifier) as? TheaterViewController else { return }
         navigationController?.pushViewController(vc, animated: true)

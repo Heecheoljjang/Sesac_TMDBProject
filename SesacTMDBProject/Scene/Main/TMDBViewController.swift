@@ -22,6 +22,8 @@ class TMDBViewController: UIViewController {
     var genreDic: [Int: String] = [:]
     var trailerKey: String = ""
     
+    var movieDetailHandler: ((TMDBModel) -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,7 +142,13 @@ extension TMDBViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let sb = UIStoryboard(name: "MovieDetail", bundle: nil)
         guard let vc = sb.instantiateViewController(withIdentifier: MovieDetailViewController.reuseIdentifier) as? MovieDetailViewController else { return }
-        vc.movieData = TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL, genre: movieList[indexPath.item].genre)
+//        vc.movieData = TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL, genre: movieList[indexPath.item].genre)
+        
+        movieDetailHandler = { data in
+            vc.movieData = data
+        }
+        
+        movieDetailHandler?(TMDBModel(title: movieList[indexPath.item].title, releaseDate: movieList[indexPath.item].releaseDate, rate: round(movieList[indexPath.item].rate * 10) / 10, imageURL: EndPoint.imageURL + movieList[indexPath.item].imageURL, overview: movieList[indexPath.item].overview, movieId: movieList[indexPath.item].movieId, posterURL: EndPoint.imageURL + movieList[indexPath.item].posterURL, genre: movieList[indexPath.item].genre))
         
         navigationController?.pushViewController(vc, animated: true)
     }
